@@ -10,15 +10,24 @@
     const root = document.getElementById("root");
 
     function App() {
-      const [counter, setCounter] = React.useState(0);
-      const onClick = () => {
-        // setCounter(counter + 1);
-        setCounter((current) => current + 1);
+      const [minutes, setMinutes] = React.useState();
+      const onChange = (event) => {
+        setMinutes(event.target.value);
       };
       return (
         <div>
-          <h3>총 클릭 횟수 : {counter}</h3>
-          <button onClick={onClick}>날 눌러봐..</button>
+          <h1>엄청난 변환기 !</h1>
+          <label for="minutes">분</label>
+          <input
+            value={minutes}
+            id="minutes"
+            placeholder="분"
+            type="number"
+            onChange={onChange}
+          />
+          <h4>넌 {minutes}를 입력했다. 내말맞?</h4>
+          <label for="hours">시간</label>
+          <input id="hours" placeholder="시간" type="number" />
         </div>
       );
     }
