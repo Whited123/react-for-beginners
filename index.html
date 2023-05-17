@@ -11,42 +11,46 @@
 
     function App() {
       const [amount, setAmount] = React.useState();
-      const [flipped, setFlipped] = React.useState(false);
+      const [inverted, setInverted] = React.useState(false);
+
       const onChange = (event) => {
         setAmount(event.target.value);
       };
       const reset = () => setAmount(0);
-      const onFlip = () => {
+      const onInvert = () => {
         reset();
-        setFlipped((current) => !current);
+        setInverted((current) => !current);
       };
+
       return (
         <div>
           <h1>엄청난 변환기 !</h1>
+
           <div>
             <label for="amount">분</label>
             <input
-              value={flipped ? amount * 60 : amount}
+              value={inverted ? amount * 60 : amount}
               id="minutes"
               placeholder="분"
               type="number"
               onChange={onChange}
-              disabled={flipped}
+              disabled={inverted}
             />
           </div>
+
           <div>
             <label for="hours">시간</label>
             <input
-              value={flipped ? amount : Math.round(amount / 60)}
+              value={inverted ? amount : Math.round(amount / 60)}
               id="hours"
               placeholder="시간"
               type="number"
-              disabled={!flipped}
+              disabled={!inverted}
               onChange={onChange}
             />
           </div>
           <button onClick={reset}>삭제</button>
-          <button onClick={onFlip}>변환</button>
+          <button onClick={onInvert}>{inverted ? "되돌리기" : "변환"}</button>
         </div>
       );
     }
