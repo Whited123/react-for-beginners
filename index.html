@@ -51,8 +51,41 @@
         </div>
       );
     }
+
     function KmToMiles() {
-      return <h3>KM 2 M</h3>;
+      const [amount, setAmount] = React.useState();
+      const [invert, setInvert] = React.useState(false);
+
+      const handleAmount = (event) => {
+        setAmount(event.target.value);
+      };
+      const reset = () => setAmount(0);
+      const handleInvert = () => {
+        reset();
+        setInvert((current) => !current);
+      };
+
+      return (
+        <div>
+          <h3>KM 2 M</h3>
+          <input
+            value={invert ? amount : amount / 1.602}
+            onChange={handleAmount}
+            type="number"
+            placeholder="KM"
+            disabled={invert}
+          ></input>
+          <input
+            value={invert ? amount : amount * 1.602}
+            onChange={handleAmount}
+            type="number"
+            placeholder="Miles"
+            disabled={!invert}
+          ></input>
+          <button onClick={reset}>삭제</button>
+          <button onClick={handleInvert}>변환</button>
+        </div>
+      );
     }
     function App() {
       const [index, setIndex] = React.useState("xx");
