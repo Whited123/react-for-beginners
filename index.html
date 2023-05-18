@@ -8,28 +8,31 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const root = document.getElementById("root");
-    function Btn({ banana, big }) {
+    function Btn({ text, changeValue }) {
       return (
         <button
+          onClick={changeValue}
           style={{
             backgroundColor: "tomato",
             color: "white",
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
-            fontSize: big ? 18 : 14,
           }}
         >
-          {banana}
+          {text}
         </button>
       );
     }
-
+    const MemorizedBtn = React.memo(Btn);
     function App() {
+      const [value, setValue] = React.useState("변경 사항 저장");
+      const changeValue = () => setValue("변경 사항 되돌리기");
+
       return (
         <div>
-          <Btn banana="변경 사항 저장" big={true} />
-          <Btn banana="계속하기" big={false} />
+          <MemorizedBtn text={value} changeValue={changeValue} />
+          <MemorizedBtn text="계속하기" />
         </div>
       );
     }
