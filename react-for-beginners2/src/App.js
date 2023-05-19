@@ -1,11 +1,14 @@
 import Button from "./Button";
 import styles from "./App.module.css";
+import { useState } from "react";
 
 function App() {
+  const [counter, setValue] = useState(0);
+  const onClick = () => setValue((prev) => prev + 1);
   return (
     <div>
-      <h1 className={styles.title}>React가, 우리 가족이 되었다.</h1>
-      <Button text={"계속하기"} />
+      <h1>{counter}</h1>
+      <button onClick={onClick}>날 눌러</button>
     </div>
   );
 }
