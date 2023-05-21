@@ -9,7 +9,7 @@ function App() {
         <Route path="/hello">
           <h1>안녕</h1>
         </Route>
-        <Route path="/movie">
+        <Route path="/movie/:id">
           <Detail />
         </Route>
         <Route path="/">
